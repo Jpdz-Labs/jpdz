@@ -62,7 +62,7 @@ body {
 
 /* Logo */
 .logo-text {
-    font-size: 60px;
+    font-size: clamp(30px, 8vw, 60px);
     font-weight: bold;
     fill: var(--logo-color);
     transition: fill 0.3s ease, transform 0.3s ease;
@@ -117,7 +117,7 @@ header {
     align-items: center;
 }
 
-
+nav {
     display: none;
 }
 
@@ -260,8 +260,8 @@ nav ul li {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
     line-height: 1.2;
 }
 
@@ -270,9 +270,10 @@ nav ul li {
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    margin-bottom: clamp(1.5rem, 4vw, 2rem);
     max-width: 600px;
+    padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 .cta-button {
