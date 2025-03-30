@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPDZ</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/dylan-inspired.css">
+    <link rel="stylesheet" href="static/css/enhanced.css">
+    <link rel="stylesheet" href="static/css/animation.css">
+    <link rel="stylesheet" href="static/css/title-animation.css">
+    <link rel="stylesheet" href="static/css/theme.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Fix for logo positioning */
+        .db-logo {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Static logo styling */
+        .db-logo-static {
+            font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .db-logo-static:hover {
+            transform: scale(1.05);
+        }
+
+        .db-logo-static .db-logo-accent {
+            color: var(--color-primary, #ff5c00);
+            display: inline;
+        }
+
+        /* Center the animation container and make it more prominent */
+        .tech-animation-container {
+            margin: 0 auto;
+            max-width: 900px;
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+            height: 600px; /* Increased height for better visibility */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Fix floating devices and prevent overlapping */
+        .tech-animation .device {
+            position: absolute;
+            z-index: 2;
+            width: 120px;
+            height: 80px;
+            font-size: 12px;
+            padding: 8px;
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Subtle background animation styling */
+        .background-animation {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        #bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        /* Interactive logo animation */
+        .animated-logo-container {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .animated-center-logo {
+            position: relative;
+            display: inline-block;
+            font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+            font-weight: 800;
+            font-size: 4rem;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .animated-center-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .center-logo-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .center-logo-accent {
+            color: var(--color-primary, #ff5c00);
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-glow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 92, 0, 0.9) 0%, rgba(255, 138, 0, 0.6) 30%, transparent 70%);
+            opacity: 0;
+            z-index: 1;
+            transition: all 0.5s ease;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            filter: blur(8px);
+        }
+        
+        .animated-center-logo:hover .logo-glow {
+            width: 120%;
+            height: 120%;
+            opacity: 0.7;
+        }
+
+
+
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(0);
+            animation: ripple-animation 1s ease-out forwards;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes ripple-animation {
+            0% { transform: scale(0); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Interactive elements styling */
+        .interactive-element {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: var(--color-primary, #ff5c00);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--color-primary, #ff5c00);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .interactive-element:hover {
+            transform: scale(1.5);
+            opacity: 1;
+            box-shadow: 0 0 20px var(--color-primary, #ff5c00), 0 0 40px var(--color-primary, #ff5c00);
+        }
+
+        /* Ensure the "How It Works" section content is properly displayed */
+        .db-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .db-step-image {
+            flex: 0 0 50%;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem;
+        }
+
+        .db-step-content {
+            flex: 0 0 50%;
+            padding: 1rem;
+        }
+
+        /* Fix for the iPhone 14 Pro example in how it works section */
+        .db-results-content {
+            height: auto !important;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: 'Fira Code', monospace;
+            white-space: pre-wrap;
+            padding: 1rem;
+        }
+
+        /* Enhance spacing for animation message */
+        .animation-message {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 15;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Ensure CTA buttons don't overlap */
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 20;
+        }
+
+        @media (max-width: 768px) {
+            .db-step {
+                flex-direction: column;
+            }
+
+            .db-step-image,
+            .db-step-content {
+                flex: 0 0 100%;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero background -->
+    <div class="db-hero-bg">
+        <div class="db-hero-bg-circle"></div>
+        <div class="db-hero-bg-circle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="db-container">
+        <nav class="db-nav">
+            <a href="/" class="db-logo db-logo-static">
+                <span>JPDZ</span>
+                <span class="db-logo-accent">.</span>
+            </a>
+
+            <div class="db-nav-links">
+            </div>
+
+        
+            
+        </nav>
+    </div>
+
+    <!-- Hero section -->
+    <header class="db-hero db-fade-in">
+        <div class="db-container">
+            <div class="db-hero-content db-slide-up">
+                <!-- Background animation for the entire hero section -->
+                <div class="background-animation">
+                    <canvas id="bg-canvas"></canvas>
+                </div>
+
+                <!-- Interactive JPDZ Logo in the center -->
+                <div class="animated-logo-container">
+                    <div id="animated-center-logo" class="animated-center-logo">
+                        <span class="center-logo-text">JPDZ</span>
+                        <div class="center-logo-accent"></div>
+                        <div class="logo-glow"></div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Search interface (hidden for anonymous users) -->
+                <div id="search-container" class="hidden">
+                    <div class="db-search-container">
+                        <div class="db-search-header">
+                            <div class="db-search-title">JPDZ://SEARCH</div>
+                            <div class="db-search-controls">
+                                <div class="db-search-control db-search-control-red"></div>
+                                <div class="db-search-control db-search-control-yellow"></div>
+                                <div class="db-search-control db-search-control-green"></div>
+                            </div>
+                        </div>
+                        <div class="db-search-input-group">
+                            <input type="text" id="search-input"
+                                   class="db-search-input"
+                                   placeholder="Enter tech product name (e.g., iPhone 14, Samsung TV)">
+                            <button id="search-button"
+                                    class="db-search-button">
+                                <i class="fas fa-search"></i> Analyze
+                            </button>
+                        </div>
+                        <p class="db-search-hint">Try searching for "iPhone 14 Pro", "Samsung Galaxy S23", or "Sony WH-1000XM5"</p>
+                    </div>
+
+                    <!-- Loading animation (hidden by default) -->
+                    <div id="loading" class="db-loading hidden">
+                        <div class="db-loader"></div>
+                        <p class="db-loading-text">Analyzing Product</p>
+                        <div id="loading-status" class="db-loading-status">Gathering information from multiple sources...</div>
+                    </div>
+
+                    <!-- Results display (hidden by default) -->
+                    <div id="results-container" class="hidden">
+                        <div class="db-results db-fade-in">
+                            <div class="db-results-header">
+                                <div class="db-results-title">JPDZ://ANALYSIS_RESULTS</div>
+                                <div class="db-search-controls">
+                                    <div class="db-search-control db-search-control-red"></div>
+                                    <div class="db-search-control db-search-control-yellow"></div>
+                                    <div class="db-search-control db-search-control-green"></div>
+                                </div>
+                            </div>
+                            <div id="results" class="db-results-content"></div>
+
+                            <div class="db-results-footer">
+                                <div id="result-stats" class="db-results-stats"></div>
+                                <div class="db-results-actions">
+                                    <button id="save-result" class="db-results-action">
+                                        <i class="fas fa-bookmark"></i> Save
+                                    </button>
+                                    <button id="share-result" class="db-results-action db-results-action-primary">
+                                        <i class="fas fa-share-alt"></i> Share
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Removed duplicate Create Account button -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content section -->
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <script src="static/js/enhanced.js"></script>
+    <script src="static/js/animation.js"></script>
+    <script src="static/js/title-animation.js"></script>
+    <script src="static/js/theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('search-button');
+            const loadingElement = document.getElementById('loading');
+            const loadingStatus = document.getElementById('loading-status');
+            const resultsContainer = document.getElementById('results-container');
+            const resultsElement = document.getElementById('results');
+            const resultStats = document.getElementById('result-stats');
+            const saveResultButton = document.getElementById('save-result');
+            const shareResultButton = document.getElementById('share-result');
+
+            // Add enhanced classes to elements
+            if (searchButton) searchButton.classList.add('enhanced-btn');
+            document.querySelectorAll('.db-search-container, .db-results, .db-feature, .db-card').forEach(el => {
+                el.classList.add('enhanced-card');
+            });
+            document.querySelectorAll('.db-search-input').forEach(el => {
+                el.classList.add('enhanced-input');
+            });
+            document.querySelectorAll('img').forEach(el => {
+                el.classList.add('smooth-image');
+            });
+
+            // Convert existing animations to use reveal classes
+            document.querySelectorAll('.db-feature, .db-step').forEach(el => {
+                el.classList.add('reveal');
+            });
+            document.querySelectorAll('.db-features').forEach(el => {
+                el.classList.add('reveal-stagger');
+            });
+
+            // Typewriter effect for results
+            function typewriterEffect(element, text, speed = 5) {
+                let i = 0;
+                element.textContent = '';
+
+                function type() {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+
+                        // Scroll to bottom as text is typed
+                        element.scrollTop = element.scrollHeight;
+
+                        // Random typing speed variation for more realistic effect
+                        const randomSpeed = speed + (Math.random() * 10);
+                        setTimeout(type, randomSpeed);
+
+                        // Add occasional "thinking" pauses at line breaks
+                        if (text.charAt(i-1) === '\n' && Math.random() > 0.7) {
+                            setTimeout(type, speed * 10); // Longer pause
+                            return;
+                        }
+                    }
+                }
+
+                type();
+            }
+
+            // Show scanning animation during search
+            function showScanningAnimation() {
+                const statusMessages = [
+                    "Accessing multiple data sources...",
+                    "Parsing product specifications...",
+                    "Analyzing user reviews...",
+                    "Comparing prices across retailers...",
+                    "Generating insights...",
+                    "Preparing final analysis..."
+                ];
+
+                let messageIndex = 0;
+                loadingStatus.textContent = statusMessages[0];
+
+                const statusInterval = setInterval(() => {
+                    messageIndex = (messageIndex + 1) % statusMessages.length;
+                    loadingStatus.textContent = statusMessages[messageIndex];
+                }, 2000);
+
+                // Return function to clear interval
+                return function() {
+                    clearInterval(statusInterval);
+                };
+            }
+
+            // Handle search button click
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    const query = searchInput.value.trim();
+
+                    if (!query) {
+                        // Add shake effect to input if empty
+                        searchInput.classList.add('shake');
+                        setTimeout(() => {
+                            searchInput.classList.remove('shake');
+                        }, 500);
+                        return;
+                    }
+
+                    // Show loading animation
+                    loadingElement.classList.remove('hidden');
+                    resultsContainer.classList.add('hidden');
+
+                    // Start scanning animation
+                    const stopScanningAnimation = showScanningAnimation();
+
+                    // Fetch results from backend
+                    fetch('/api/search', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            query: query,
+                            save_to_db: true
+                        }),
+                        credentials: 'include'
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Stop scanning animation
+                        stopScanningAnimation();
+
+                        // Hide loading animation
+                        loadingElement.classList.add('hidden');
+
+                        // Show results container
+                        resultsContainer.classList.remove('hidden');
+
+                        // Apply typewriter effect to results
+                        typewriterEffect(resultsElement, data.result);
+
+                        // Update result stats
+                        resultStats.textContent = `Found ${data.product_count} products and ${data.review_count} reviews`;
+
+                        // Scroll to results
+                        resultsContainer.scrollIntoView({ behavior: 'smooth' });
+
+                        // Check if user is logged in
+                        if (data.user_id) {
+                            saveResultButton.classList.remove('hidden');
+                        } else {
+                            saveResultButton.classList.add('hidden');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+
+                        // Stop scanning animation
+                        stopScanningAnimation();
+
+                        // Hide loading animation
+                        loadingElement.classList.add('hidden');
+
+                        // Show error in results
+                        resultsContainer.classList.remove('hidden');
+                        resultsElement.textContent = 'Error: Connection failed. Please try again.';
+
+                        // Scroll to results
+                        resultsContainer.scrollIntoView({ behavior: 'smooth' });
+                    });
+                });
+            }
+
+            // Handle save result button click
+            if (saveResultButton) {
+                saveResultButton.addEventListener('click', function() {
+                    // Check if user is logged in
+                    fetch('/api/auth/verify', {
+                        method: 'GET',
+                        credentials: 'include'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // User is logged in, show success message
+                            alert('Result saved to your account!');
+                        } else {
+                            // User is not logged in, redirect to login
+                            window.location.href = '/login';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error saving result. Please try again.');
+                    });
+                });
+            }
+
+            // Handle share result button click
+            if (shareResultButton) {
+                shareResultButton.addEventListener('click', function() {
+                    // Create a temporary input to copy the URL
+                    const tempInput = document.createElement('input');
+                    tempInput.value = window.location.href;
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+
+                    // Show success message
+                    alert('Link copied to clipboard!');
+                });
+            }
+
+            // Allow pressing Enter to search
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchButton.click();
+                    }
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        function handleLogoClick() {
+            // No dialog, just the ripple effect
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Center logo animation and interaction
+            const centerLogo = document.getElementById('animated-center-logo');
+            if (centerLogo) {
+                // Add click event for the center logo
+                centerLogo.addEventListener('click', function() {
+                    // Add pulse animation
+                    this.classList.add('logo-pulse');
+
+                    // Create explosion effect
+                    createLogoExplosion(this);
+
+                    // Remove pulse class after animation completes
+                    setTimeout(() => {
+                        this.classList.remove('logo-pulse');
+                    }, 500);
+
+                    // Call the handleLogoClick function
+                    handleLogoClick();
+                });
+
+                // Add hover effects for each character in the center logo
+                const logoText = centerLogo.querySelector('.center-logo-text');
+                if (logoText) {
+                    const text = logoText.textContent;
+                    logoText.textContent = '';
+
+                    // Create individual character spans
+                    for (let i = 0; i < text.length; i++) {
+                        const charSpan = document.createElement('span');
+                        charSpan.className = 'center-logo-char';
+                        charSpan.textContent = text[i];
+                        charSpan.style.display = 'inline-block';
+                        charSpan.style.transition = 'all 0.3s ease';
+                        charSpan.style.transform = 'translateY(0)';
+
+                        // Add hover effect
+                        charSpan.addEventListener('mouseenter', function() {
+                            this.style.transform = 'translateY(-10px) scale(1.2)';
+                            this.style.color = 'rgba(255, 92, 0, 1)';
+                            this.style.textShadow = '0 0 20px rgba(255, 92, 0, 0.8)';
+                        });
+
+                        charSpan.addEventListener('mouseleave', function() {
+                            this.style.transform = 'translateY(0) scale(1)';
+                            this.style.color = '';
+                            this.style.textShadow = '';
+                        });
+
+                        logoText.appendChild(charSpan);
+                    }
+                }
+            }
+        });
+
+        // Create explosion effect for the center logo
+        function createLogoExplosion(element) {
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            // Create particles
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'title-particle';
+
+                // Random position in all directions
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 150;
+                const x = Math.cos(angle) * distance;
+                const y = Math.sin(angle) * distance;
+                particle.style.setProperty('--x', `${x}px`);
+                particle.style.setProperty('--y', `${y}px`);
+
+                // Random size
+                const size = 3 + Math.random() * 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Position at the center of the element
+                particle.style.left = `${centerX}px`;
+                particle.style.top = `${centerY}px`;
+
+                // Random animation duration
+                const duration = 0.5 + Math.random() * 1.5;
+                particle.style.animationDuration = `${duration}s`;
+
+                // Add to body
+                document.body.appendChild(particle);
+
+                // Remove after animation
+                setTimeout(() => {
+                    if (particle.parentNode === document.body) {
+                        document.body.removeChild(particle);
+                    }
+                }, duration * 1000);
+            }
+
+            // Add a flash effect
+            const flash = document.createElement('div');
+            flash.style.position = 'fixed';
+            flash.style.top = '0';
+            flash.style.left = '0';
+            flash.style.width = '100%';
+            flash.style.height = '100%';
+            flash.style.backgroundColor = 'rgba(255, 92, 0, 0.15)';
+            flash.style.pointerEvents = 'none';
+            flash.style.zIndex = '9999';
+            flash.style.opacity = '0.8';
+            flash.style.transition = 'opacity 0.3s ease-out';
+
+            document.body.appendChild(flash);
+
+            // Remove flash after animation
+            setTimeout(() => {
+                flash.style.opacity = '0';
+                setTimeout(() => {
+                    if (flash.parentNode === document.body) {
+                        document.body.removeChild(flash);
+                    }
+                }, 300);
+            }, 50);
+        }
+    </script>
+
+    <script>
+        // Override title animation for the static logo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find the static logo
+            const staticLogo = document.querySelector('.db-logo-static');
+
+            // If the initTitleAnimation function has already run on this logo, restore it to its original state
+            if (staticLogo && staticLogo.querySelector('.animated-title-container')) {
+                // Get the original text content
+                const logoText = staticLogo.getAttribute('data-original-text') || 'JPDZ';
+                const accentText = staticLogo.getAttribute('data-original-accent') || '.';
+
+                // Clear the animated content
+                staticLogo.innerHTML = '';
+
+                // Restore the original content
+                const textSpan = document.createElement('span');
+                textSpan.textContent = logoText;
+                staticLogo.appendChild(textSpan);
+
+                const accentSpan = document.createElement('span');
+                accentSpan.className = 'db-logo-accent';
+                accentSpan.textContent = accentText;
+                staticLogo.appendChild(accentSpan);
+            }
+        });
+    </script>
+
+    <style>
+        /* Additional animations */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        /* Animated center logo styles */
+        .animated-logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            margin-top: 1rem;
+            padding: 1.5rem 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .animated-center-logo {
+            display: inline-flex;
+            align-items: center;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 7.5rem;
+            letter-spacing: 0.12em;
+            color: var(--color-primary);
+            background: linear-gradient(
+                135deg,
+                rgba(255, 92, 0, 1) 0%,
+                rgba(255, 138, 0, 1) 50%,
+                rgba(255, 92, 0, 1) 100%
+            );
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: gradient-shift 8s ease infinite;
+            text-shadow:
+                0 0 10px rgba(255, 92, 0, 0.5),
+                0 0 50px rgba(255, 92, 0, 0.3),
+                0 0 80px rgba(255, 92, 0, 0.2);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            text-transform: uppercase;
+        }
+
+        .center-logo-text {
+            position: relative;
+            display: inline-block;
+            color: var(--color-primary);
+            text-shadow: 0 0 15px rgba(255, 92, 0, 0.7);
+        }
+
+        .center-logo-accent {
+            display: inline-block;
+            width: 0.3em;
+            height: 0.3em;
+            margin-left: 0.1em;
+            background-color: var(--color-primary);
+            border-radius: 2px;
+            position: relative;
+            animation: pulse-accent 2s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255, 92, 0, 0.8);
+        }
+
+        .animated-center-logo::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border-radius: 20px;
+            background: radial-gradient(
+                circle at center,
+                rgba(255, 92, 0, 0.2) 0%,
+                transparent 70%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .animated-center-logo:hover::before {
+            opacity: 1;
+        }
+
+        /* Logo click animation */
+        .logo-pulse {
+            animation: logo-pulse-animation 0.5s ease-out;
+        }
+
+        @keyframes logo-pulse-animation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Node pulse animation */
+        @keyframes node-pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* Connection animation */
+        @keyframes connection-pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+
+        /* Node creation animation */
+        @keyframes node-create {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.3); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* Highlight message animation */
+        .highlight-message {
+            animation: highlight-pulse 2s ease-in-out;
+        }
+
+        @keyframes highlight-pulse {
+            0%, 100% { background-color: rgba(255, 255, 255, 0.1); }
+            50% { background-color: rgba(var(--color-primary-rgb, 255, 92, 0), 0.2); }
+        }
+    </style>
+
+    <script>
+        // Integrated background animation and interactive logo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Background animation
+            const bgCanvas = document.getElementById('bg-canvas');
+            if (bgCanvas) {
+                // Set canvas size to match window
+                bgCanvas.width = window.innerWidth;
+                bgCanvas.height = window.innerHeight;
+
+                const bgCtx = bgCanvas.getContext('2d');
+                const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary') || '#ff5c00';
+
+                // Create particles for background
+                const bgParticles = [];
+                const particleCount = Math.min(Math.floor(window.innerWidth * window.innerHeight / 10000), 100);
+
+                for (let i = 0; i < particleCount; i++) {
+                    bgParticles.push({
+                        x: Math.random() * bgCanvas.width,
+                        y: Math.random() * bgCanvas.height,
+                        size: Math.random() * 2 + 1,
+                        speedX: (Math.random() - 0.5) * 0.3,
+                        speedY: (Math.random() - 0.5) * 0.3,
+                        opacity: Math.random() * 0.3 + 0.1
+                    });
+                }
+
+                // Create connections between particles
+                function drawConnections() {
+                    for (let i = 0; i < bgParticles.length; i++) {
+                        for (let j = i + 1; j < bgParticles.length; j++) {
+                            const dx = bgParticles[i].x - bgParticles[j].x;
+                            const dy = bgParticles[i].y - bgParticles[j].y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+
+                            if (distance < 150) {
+                                bgCtx.beginPath();
+                                bgCtx.moveTo(bgParticles[i].x, bgParticles[i].y);
+                                bgCtx.lineTo(bgParticles[j].x, bgParticles[j].y);
+
+                                const opacity = 0.1 * (1 - distance / 150);
+                                bgCtx.strokeStyle = `rgba(${parseInt(primaryColor.slice(1, 3), 16)}, ${parseInt(primaryColor.slice(3, 5), 16)}, ${parseInt(primaryColor.slice(5, 7), 16)}, ${opacity})`;
+                                bgCtx.lineWidth = 0.5;
+                                bgCtx.stroke();
+                            }
+                        }
+                    }
+                }
+
+                // Animation loop for background
+                function animateBackground() {
+                    bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+
+                    // Update and draw particles
+                    bgParticles.forEach(particle => {
+                        particle.x += particle.speedX;
+                        particle.y += particle.speedY;
+
+                        // Wrap around edges
+                        if (particle.x < 0) particle.x = bgCanvas.width;
+                        if (particle.x > bgCanvas.width) particle.x = 0;
+                        if (particle.y < 0) particle.y = bgCanvas.height;
+                        if (particle.y > bgCanvas.height) particle.y = 0;
+
+                        // Draw particle
+                        bgCtx.beginPath();
+                        bgCtx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                        bgCtx.fillStyle = `rgba(${parseInt(primaryColor.slice(1, 3), 16)}, ${parseInt(primaryColor.slice(3, 5), 16)}, ${parseInt(primaryColor.slice(5, 7), 16)}, ${particle.opacity})`;
+                        bgCtx.fill();
+                    });
+
+                    // Draw connections
+                    drawConnections();
+
+                    requestAnimationFrame(animateBackground);
+                }
+
+                // Start background animation
+                animateBackground();
+
+                // Resize handler
+                window.addEventListener('resize', function() {
+                    bgCanvas.width = window.innerWidth;
+                    bgCanvas.height = window.innerHeight;
+                });
+            }
+
+            // Interactive logo
+            const logo = document.getElementById('animated-center-logo');
+            if (logo) {
+                const logoGlow = logo.querySelector('.logo-glow');
+
+                // Create ripple effect on logo click
+                logo.addEventListener('click', function(e) {
+                    // Create ripple
+                    const ripple = document.createElement('div');
+                    ripple.className = 'ripple';
+
+                    const rect = logo.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height) * 2;
+
+                    ripple.style.width = size + 'px';
+                    ripple.style.height = size + 'px';
+                    ripple.style.left = (e.clientX - rect.left) + 'px';
+                    ripple.style.top = (e.clientY - rect.top) + 'px';
+
+                    logo.appendChild(ripple);
+
+                    // Remove ripple after animation completes
+                    setTimeout(() => {
+                        if (ripple && ripple.parentNode) {
+                            ripple.parentNode.removeChild(ripple);
+                        }
+                    }, 1000);
+
+                    // Show glow effect
+                    if (logoGlow) {
+                        logoGlow.style.width = size + 'px';
+                        logoGlow.style.height = size + 'px';
+                        logoGlow.style.left = (e.clientX - rect.left) + 'px';
+                        logoGlow.style.top = (e.clientY - rect.top) + 'px';
+                        logoGlow.style.opacity = '0.8';
+
+                        // Fade out glow
+                        setTimeout(() => {
+                            logoGlow.style.opacity = '0';
+                        }, 500);
+                    }
+                });
+
+                // Add hover effect
+                logo.addEventListener('mouseenter', function() {
+                    if (logoGlow) {
+                        const rect = logo.getBoundingClientRect();
+                        const size = Math.max(rect.width, rect.height) * 1.5;
+
+                        logoGlow.style.width = size + 'px';
+                        logoGlow.style.height = size + 'px';
+                        logoGlow.style.left = (rect.width / 2) + 'px';
+                        logoGlow.style.top = (rect.height / 2) + 'px';
+                        logoGlow.style.opacity = '0.3';
+                    }
+                });
+
+                logo.addEventListener('mouseleave', function() {
+                    if (logoGlow) {
+                        logoGlow.style.opacity = '0';
+                    }
+                });
+
+                // Add subtle pulse animation to logo
+                let pulsePhase = 0;
+
+                function pulseLogo() {
+                    pulsePhase += 0.02;
+                    const scale = 1 + Math.sin(pulsePhase) * 0.02;
+
+                    // Apply subtle scale effect
+                    logo.style.transform = `scale(${scale})`;
+
+                    requestAnimationFrame(pulseLogo);
+                }
+
+                pulseLogo();
+            }
+
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('.cta-button, .cta-button-secondary, .db-btn-primary, .db-btn-secondary');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('div');
+                    ripple.className = 'ripple';
+
+                    const rect = button.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height) * 2;
+
+                    ripple.style.width = size + 'px';
+                    ripple.style.height = size + 'px';
+                    ripple.style.left = (e.clientX - rect.left) + 'px';
+                    ripple.style.top = (e.clientY - rect.top) + 'px';
+
+                    button.appendChild(ripple);
+
+                    // Remove ripple after animation completes
+                    setTimeout(() => {
+                        if (ripple && ripple.parentNode) {
+                            ripple.parentNode.removeChild(ripple);
+                        }
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold mb-6 text-primary font-heading">Personal Note</h2>
+    <div class="glass-card p-6 rounded-lg shadow-lg">
+        <div class="text-white font-heading space-y-4">
+            <p>Hello,</p>
+            <p>My name is Ratnam Shah, and I want to share something close to me with you. In 2020, I started Jeopardize with a simple yet powerful dream: to help people make informed tech purchases. I've always believed that buying tech should be an intimate process. Whether it's a new phone, a laptop, or any other gadget, these are the devices we live with, rely on, and keep close for years—sometimes two, three, or even more. You should love what you buy, no matter your budget. Not everyone can afford the latest and greatest, and that's perfectly okay. What matters to me is that you make a choice you're happy with, one that brings you joy and serves you well.</p>
+            <p>I want to create something different. I want to build a platform that truly works for you, helping you navigate the tech landscape with honesty and care. That's why I started Jeopardize, and that's why I'm now taking a step forward by rebranding it to JPDZ.</p>
+            <p>This isn't just a name change—it's a fresh start, a chance to build something even more personal and meaningful. With JPDZ, I'm not only reviewing products; I'm creating a space where you can fall in love with tech again. A place where you can learn about your devices before you buy them, feel confident in your choices, and cherish what you own with utmost care. My goal is to bring back that sense of excitement and connection we should all have with the tools that shape our daily lives.</p>
+            <p>I couldn't have come this far without the incredible support of all the 220 subscribers. Whether you've watched every video or just subscribed because I told you to, thank you. And to my parents and friends, your belief in me is the what keeps me going. From the bottom of my (top) heart, thank you all for being part of this journey.</p>
+            <p>As I embark on this new chapter with JPDZ, I invite you to join me. Let's fall in love with tech again. Let's learn about our devices, love them, and make informed choices that bring us joy. There is a quote by Steve Jobs that is running through my head as I write this: "Technology is nothing. What's important is that you have faith in people, that they're basically good and smart, and if you give them tools, they'll do wonderful things with them." Together, let's prove that true.</p>
+            <div class="mt-8">
+                <p>Your Friend,</p>
+                <p class="mt-2">Ratnam Shah</p>
+            </div>
+        </div>
+    </div>
+</div>

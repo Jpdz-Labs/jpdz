@@ -1,0 +1,294 @@
+/* 
+ * JPDZ Title Animation Styles
+ * Provides an eye-catching animation for the JPDZ logo/title
+ */
+
+/* Base styles for the animated title container */
+.animated-title-container {
+    position: relative;
+    display: inline-block;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    margin: 0 auto;
+  }
+  
+  /* The main JPDZ title with 3D effects */
+  .animated-title {
+    font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+    font-weight: 800;
+    font-size: 4rem;
+    letter-spacing: 0.1em;
+    color: transparent;
+    display: inline-block;
+    position: relative;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 92, 0, 1) 0%,
+      rgba(255, 138, 0, 1) 50%,
+      rgba(255, 92, 0, 1) 100%
+    );
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: gradient-shift 8s ease infinite;
+    text-shadow: 
+      0 0 10px rgba(255, 92, 0, 0.5),
+      0 0 30px rgba(255, 92, 0, 0.2);
+    transform-style: preserve-3d;
+  }
+  
+  /* Character animation container */
+  .char-container {
+    display: inline-block;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Individual characters */
+  .animated-char {
+    display: inline-block;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.3s ease;
+    animation: float-char 3s ease-in-out infinite;
+    animation-delay: calc(var(--char-index) * 0.2s);
+  }
+  
+  /* Hover effects for characters */
+  .char-container:hover .animated-char {
+    transform: translateY(-10px) rotateX(20deg) scale(1.2);
+    text-shadow: 
+      0 0 15px rgba(255, 92, 0, 0.8),
+      0 0 40px rgba(255, 92, 0, 0.4);
+  }
+  
+  /* Glitch effect layer */
+  .animated-title::before,
+  .animated-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .animated-title::before {
+    left: 2px;
+    text-shadow: -1px 0 rgba(0, 255, 255, 0.7);
+    animation: glitch-1 3s infinite linear alternate-reverse;
+    opacity: 0.3;
+  }
+  
+  .animated-title::after {
+    left: -2px;
+    text-shadow: 1px 0 rgba(255, 0, 255, 0.7);
+    animation: glitch-2 2s infinite linear alternate-reverse;
+    opacity: 0.3;
+  }
+  
+  /* Glow effect */
+  .title-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 92, 0, 0.4) 0%,
+      rgba(255, 92, 0, 0) 70%
+    );
+    filter: blur(20px);
+    opacity: 0;
+    animation: pulse-glow 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  /* Tech circuit lines behind the title */
+  .title-circuit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(90deg, rgba(255, 92, 0, 0) 0%, rgba(255, 92, 0, 0.2) 50%, rgba(255, 92, 0, 0) 100%),
+      linear-gradient(0deg, rgba(255, 92, 0, 0) 0%, rgba(255, 92, 0, 0.1) 50%, rgba(255, 92, 0, 0) 100%);
+    background-size: 20px 20px;
+    opacity: 0.3;
+    z-index: -2;
+    animation: circuit-shift 10s linear infinite;
+  }
+  
+  /* Dot accent with pulse effect */
+  .title-accent {
+    display: inline-block;
+    color: rgba(255, 92, 0, 1);
+    font-size: 5rem;
+    margin-left: 0.1em;
+    position: relative;
+    animation: pulse-accent 2s ease-in-out infinite;
+    text-shadow: 
+      0 0 10px rgba(255, 92, 0, 0.8),
+      0 0 30px rgba(255, 92, 0, 0.4);
+  }
+  
+  /* Particle effects */
+  .title-particle {
+    position: absolute;
+    background-color: rgba(255, 92, 0, 0.8);
+    border-radius: 50%;
+    width: 4px;
+    height: 4px;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    animation: particle-float 2s ease-out forwards;
+  }
+  
+  /* Animation keyframes */
+  @keyframes float-char {
+    0%, 100% {
+      transform: translateY(0) rotateX(0deg);
+    }
+    50% {
+      transform: translateY(-5px) rotateX(10deg);
+    }
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  @keyframes glitch-1 {
+    0%, 100% {
+      clip-path: inset(50% 0 50% 0);
+    }
+    10% {
+      clip-path: inset(10% 0 80% 0);
+    }
+    20% {
+      clip-path: inset(80% 0 10% 0);
+    }
+    30% {
+      clip-path: inset(40% 0 60% 0);
+    }
+    40% {
+      clip-path: inset(60% 0 40% 0);
+    }
+    50% {
+      clip-path: inset(20% 0 70% 0);
+    }
+    60% {
+      clip-path: inset(70% 0 20% 0);
+    }
+    70% {
+      clip-path: inset(30% 0 50% 0);
+    }
+    80% {
+      clip-path: inset(50% 0 30% 0);
+    }
+    90% {
+      clip-path: inset(0% 0 90% 0);
+    }
+  }
+  
+  @keyframes glitch-2 {
+    0%, 100% {
+      clip-path: inset(50% 0 50% 0);
+    }
+    15% {
+      clip-path: inset(20% 0 70% 0);
+    }
+    30% {
+      clip-path: inset(70% 0 20% 0);
+    }
+    45% {
+      clip-path: inset(10% 0 80% 0);
+    }
+    60% {
+      clip-path: inset(80% 0 10% 0);
+    }
+    75% {
+      clip-path: inset(30% 0 60% 0);
+    }
+    90% {
+      clip-path: inset(60% 0 30% 0);
+    }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.2;
+      transform: translate(-50%, -50%) scale(0.8);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+  }
+  
+  @keyframes circuit-shift {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 20px 20px;
+    }
+  }
+  
+  @keyframes pulse-accent {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes particle-float {
+    0% {
+      opacity: 1;
+      transform: scale(0) translate(0, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1) translate(var(--x, 50px), var(--y, -50px));
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .animated-title {
+      font-size: 3rem;
+    }
+    
+    .title-accent {
+      font-size: 3.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .animated-title {
+      font-size: 2rem;
+    }
+    
+    .title-accent {
+      font-size: 2.5rem;
+    }
+  }

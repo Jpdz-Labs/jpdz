@@ -1,0 +1,121 @@
+/* Enhanced styling for JPDZ */
+
+/* Base styling enhancements */
+body {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-dark);
+}
+
+/* Enhanced header styling */
+header {
+    backdrop-filter: blur(10px);
+    background-color: rgba(18, 18, 18, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Enhanced logo styling */
+.db-logo-static {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.db-logo-static:hover {
+    transform: scale(1.05);
+}
+
+.db-logo-static .db-logo-accent {
+    color: var(--color-primary);
+    display: inline;
+}
+
+/* Enhanced section styling */
+section {
+    position: relative;
+    z-index: 1;
+}
+
+/* Glass morphism cards */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 92, 0, 0.3);
+}
+
+/* Enhanced button styling */
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border: none;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 92, 0, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 92, 0, 0.4);
+}
+
+/* Enhanced text styling */
+.heading-xl {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
+}
+
+.heading-accent {
+    color: var(--color-primary);
+}
+
+/* Dark mode specific enhancements */
+[data-theme="dark"] .glass-card {
+    background: rgba(30, 30, 30, 0.5);
+}
+
+/* Light mode adjustments */
+[data-theme="light"] {
+    --color-bg-light: #f8f9fa;
+    --color-text-light: #333;
+}
+
+[data-theme="light"] body {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-light);
+}
+
+[data-theme="light"] .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .heading-xl {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading-xl {
+        font-size: 2.5rem;
+    }
+}
