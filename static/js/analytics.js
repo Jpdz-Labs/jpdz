@@ -1,8 +1,8 @@
 import { inject } from '@vercel/analytics';
 
-// Wait for DOM to be ready before initializing analytics
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Vercel Analytics
-    inject();
-    console.log('Vercel Analytics initialized');
-});
+// Initialize Vercel Analytics immediately
+inject();
+console.log('Vercel Analytics initialized');
+
+// No need to wait for DOMContentLoaded when using ES modules
+// as modules are already deferred by default
