@@ -34,6 +34,23 @@
             transform: scale(1.05);
         }
 
+        .nav-button {
+            padding: 0.5rem 1rem;
+            background-color: var(--color-primary, #ff5c00);
+            color: #ffffff;
+            border-radius: 4px;
+            font-family: var(--font-heading, 'Space Grotesk', sans-serif);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
         .db-logo-static .db-logo-accent {
             color: var(--color-primary, #ff5c00);
             display: inline;
@@ -265,6 +282,7 @@
             </a>
 
             <div class="db-nav-links">
+                <a href="/wallpapers" class="nav-button">Wallpapers</a>
             </div>
 
         
