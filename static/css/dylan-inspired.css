@@ -1052,23 +1052,6 @@
     box-shadow: var(--shadow-md);
   }
   
-  /* Mobile Navigation */
-  .db-mobile-nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    padding: 8px;
-    z-index: 100;
-  }
-
-  .db-mobile-nav-toggle span {
-    width: 24px;
-    height: 2px;
-    background-color: var(--color-text);
-    transition: all 0.3s ease;
-  }
-
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .db-dashboard {
@@ -1095,55 +1078,10 @@
     .db-section-title {
       font-size: 2rem;
     }
-
-    .db-mobile-nav-toggle {
-      display: flex;
-    }
     
-    .db-nav {
-      padding: var(--space-md);
-      position: relative;
-    }
-
     .db-nav-links {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: var(--color-surface);
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-lg);
-      z-index: 90;
-      padding: var(--space-xl);
-    }
-
-    .db-nav-links.active {
       display: flex;
-    }
-
-    .db-nav-link {
-      font-size: 1.25rem;
+      justify-content: flex-end;
       width: 100%;
-      text-align: center;
-      padding: var(--space-sm) 0;
-    }
-
-    .db-auth-buttons {
-      flex-direction: column;
-      gap: var(--space-md);
-      width: 100%;
-      max-width: 200px;
-      margin-top: var(--space-lg);
-    }
-
-    .db-btn-primary,
-    .db-btn-secondary {
-      width: 100%;
-      text-align: center;
-      padding: var(--space-sm) var(--space-md);
     }
   }
