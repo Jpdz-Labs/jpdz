@@ -1,0 +1,413 @@
+/* 
+ * JPDZ Mobile Optimization Styles
+ * Comprehensive mobile-first enhancements for better mobile browser experience
+ * Enhanced with improved touch interactions, form accessibility, and performance optimizations
+ */
+
+/* Base mobile optimizations */
+html {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
+  /* Prevent content reflow */
+  overflow-x: hidden;
+  /* Improve scrolling performance */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent body scrolling when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: var(--app-height, 100%);
+}
+
+/* CSS variable for viewport height fix */
+:root {
+  --app-height: 100%;
+  --real-vh: 1vh;
+  /* Safe area insets for notched devices */
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+}
+
+/* Improved touch targets for all interactive elements */
+button, 
+.btn,
+.nav-button,
+.download-button,
+a,
+input,
+select,
+textarea,
+[role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.75rem 1rem;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  /* Provide visual feedback on touch */
+  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+}
+
+/* Touch states for interactive elements */
+button:active, 
+.btn:active,
+.nav-button:active,
+.download-button:active,
+a:active,
+[role="button"]:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+/* Prevent text from being too small on mobile */
+p, li, span, label, input, textarea, select, button {
+  font-size: max(16px, 1rem);
+  line-height: 1.5;
+}
+
+/* Improved form elements for mobile */
+input, textarea, select {
+  font-size: 16px !important; /* Prevents iOS zoom on focus */
+  max-width: 100%;
+  border-radius: 8px;
+  padding: 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  box-shadow: none;
+  /* Improve accessibility */
+  outline-offset: 2px;
+  /* Prevent overflow */
+  box-sizing: border-box;
+}
+
+/* Enhance form focus states */
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--color-primary, #ff5c00);
+  outline-offset: 0;
+  box-shadow: 0 0 0 2px rgba(255, 92, 0, 0.2);
+}
+
+/* Improve form placeholder contrast */
+::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+}
+
+/* Disable user-select on interactive elements to prevent unwanted selection on tap */
+button, .btn, .nav-button, .download-button, [role="button"] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Enhanced mobile navigation */
+.menu-toggle {
+  padding: 10px;
+  z-index: 101;
+}
+
+.menu-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-text-dark, #ffffff);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+/* Touch active state for buttons */
+.touch-active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+/* Prevent text selection during touch interactions */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--safe-area-inset-top, 0px);
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Ensure menu toggle is visible on all pages */
+.db-nav .menu-toggle .bar {
+  background-color: var(--color-text-dark, #ffffff);
+  margin: 2px 0;
+}
+
+/* Menu toggle active state */
+.menu-toggle.active .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Improved mobile navigation menu */
+nav {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: opacity, transform;
+}
+
+nav.active {
+  display: block;
+  height: 100vh;
+  height: calc(var(--app-height) - var(--safe-area-inset-top) - var(--safe-area-inset-bottom));
+  overflow-y: auto;
+  padding-top: calc(1rem + var(--safe-area-inset-top));
+  padding-bottom: calc(2rem + var(--safe-area-inset-bottom));
+  opacity: 1;
+  transform: translateY(0);
+  /* Improve scrolling performance */
+  -webkit-overflow-scrolling: touch;
+  /* Prevent content behind from being interactive */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+nav.active ul {
+  padding: 1rem;
+}
+
+nav.active ul li {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+nav.active .nav-link {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  display: block;
+}
+
+/* Responsive layout improvements */
+.container {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive typography */
+.heading-xl {
+  font-size: clamp(2rem, 8vw, 4rem);
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Improved card layouts for mobile */
+.glass-card {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  height: auto;
+}
+
+/* Wallpaper gallery mobile optimizations */
+.wallpaper-container {
+  grid-template-columns: 1fr;
+  padding: 1rem;
+  gap: 1.5rem;
+  /* Optimize loading performance */
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
+  /* Add overscroll behavior for better UX */
+  overscroll-behavior: contain;
+}
+
+.wallpaper-card {
+  margin-bottom: 1rem;
+  /* Add support for swipe gestures */
+  touch-action: pan-y;
+  /* Improve loading performance */
+  will-change: transform;
+  /* Add subtle transition */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wallpaper-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.wallpaper-info {
+  padding: 1.5rem;
+}
+
+.download-button {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Fix for tech animation on mobile */
+.tech-animation-container {
+  height: auto;
+  max-height: 400px;
+  padding: 1rem 0;
+}
+
+/* Improved footer for mobile */
+.footer-content {
+  padding: 2rem 1rem;
+}
+
+/* Performance optimizations */
+img, video, canvas, svg {
+  /* Prevent layout shifts during loading */
+  content-visibility: auto;
+  contain: content;
+}
+
+/* Optimize animations for mobile */
+@media (max-width: 768px) {
+  .animated-element {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+/* Media queries refinements */
+@media (max-width: 480px) {
+  header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .db-logo-static {
+    font-size: 1.25rem;
+  }
+  
+  .section-padding {
+    padding: 3rem 1rem;
+  }
+  
+  .btn-primary {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  /* Improve spacing for small screens */
+  p, h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+  }
+  
+  /* Ensure images are responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+    /* Prevent layout shifts during loading */
+    object-fit: contain;
+    /* Prevent content reflow */
+    content-visibility: auto;
+  }
+  
+  /* Improve form elements on small screens */
+  input, select, textarea, button {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .db-logo-static {
+    font-size: 1.1rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (max-height: 500px) and (orientation: landscape) {
+  nav.active {
+    overflow-y: scroll;
+    max-height: 100vh;
+    padding-left: calc(1rem + var(--safe-area-inset-left));
+    padding-right: calc(1rem + var(--safe-area-inset-right));
+  }
+  
+  .hero {
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+  
+  /* Optimize layout for landscape */
+  .container {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  
+  /* Adjust grid layouts for landscape */
+  .grid-layout {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+  
+  /* Adjust tap highlight for dark mode */
+  button, .btn, a, [role="button"] {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Adjust form placeholder for dark mode */
+  ::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Print styles for mobile */
+@media print {
+  /* Optimize for printing from mobile devices */
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav, .menu-toggle, .footer {
+    display: none !important;
+  }
+}

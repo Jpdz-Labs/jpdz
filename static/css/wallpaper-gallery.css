@@ -29,6 +29,8 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  height: auto;
+  min-height: 250px;
 }
 
 .wallpaper-card:hover {
@@ -38,6 +40,24 @@
     0 20px 40px rgba(0, 0, 0, 0.4),
     0 0 80px rgba(255, 92, 0, 0.25),
     0 0 20px rgba(255, 92, 0, 0.1);
+}
+
+/* Mobile-specific hover states */
+@media (max-width: 768px) {
+  .wallpaper-card:hover {
+    transform: none;
+  }
+  
+  .wallpaper-card:active {
+    transform: scale(0.98);
+    border-color: rgba(255, 92, 0, 0.4);
+  }
+  
+  .wallpaper-card:active .wallpaper-overlay,
+  .wallpaper-card:active .wallpaper-info {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .wallpaper-image {
@@ -119,20 +139,40 @@
 
 .download-button {
   display: inline-block;
-  padding: 0.8rem 1.8rem;
-  background-color: rgba(255, 92, 0, 0.9);
+  background: linear-gradient(135deg, var(--color-primary, #ff5c00) 0%, var(--color-primary-dark, #cc4900) 100%);
   color: white;
-  text-decoration: none;
-  border-radius: 12px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-  transform: translateY(20px);
-  box-shadow: 0 4px 12px rgba(255, 92, 0, 0.2);
+  text-decoration: none;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 92, 0, 0.3);
+  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
-  user-select: none;
-  -webkit-user-select: none;
+  min-height: 44px;
+  min-width: 44px;
+  text-align: center;
+}
+
+/* Mobile-specific download button styles */
+@media (max-width: 768px) {
+  .download-button {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .download-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 8px rgba(255, 92, 0, 0.2);
+  }
 }
 
 .wallpaper-card:hover .download-button {
