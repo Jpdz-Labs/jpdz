@@ -1080,6 +1080,8 @@
     }
     
     .db-nav-links {
-      display: none;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
     }
   }
