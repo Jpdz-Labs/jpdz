@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1280, initial-scale=1.0">
     <title>JPDZ</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="static/css/dylan-inspired.css">
@@ -253,16 +253,19 @@
             z-index: 20;
         }
 
-        @media (max-width: 768px) {
-            .db-step {
-                flex-direction: column;
-            }
+        /* Maintaining desktop layout for all devices */
+        .db-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 5;
+        }
 
-            .db-step-image,
-            .db-step-content {
-                flex: 0 0 100%;
-                width: 100%;
-            }
+        .db-step-image,
+        .db-step-content {
+            flex: 0 0 50%;
+            width: 50%;
         }
     </style>
 </head>
