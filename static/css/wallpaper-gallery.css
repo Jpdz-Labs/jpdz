@@ -12,9 +12,9 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: clamp(1rem, 5vw, 2rem);
 }
 
 .wallpaper-card {
@@ -65,7 +65,9 @@
   backdrop-filter: blur(2px);
 }
 
-.wallpaper-card:hover .wallpaper-overlay {
+.wallpaper-card:hover .wallpaper-overlay,
+.wallpaper-card:focus .wallpaper-overlay,
+.wallpaper-card:active .wallpaper-overlay {
   opacity: 1;
 }
 
@@ -74,7 +76,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 2rem;
+  padding: clamp(1rem, 5vw, 2rem);
   color: white;
   transform: translateY(100%);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -165,22 +167,45 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .wallpaper-section {
+    padding: 2rem 1rem;
+  }
+
   .wallpaper-container {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
+    gap: 1rem;
+    padding: 0.5rem;
   }
 
   .wallpaper-title {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    margin-bottom: 0.5rem;
   }
 
   .wallpaper-description {
-    font-size: 0.8rem;
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    margin-bottom: 1rem;
   }
 
   .download-button {
-    padding: 0.6rem 1.2rem;
+    padding: 0.8rem 1.4rem;
     font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Show info by default on mobile */
+  .wallpaper-overlay {
+    opacity: 1;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+  }
+
+  .wallpaper-info {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .wallpaper-card:hover {
+    transform: translateY(-5px) scale(1.01);
   }
 }

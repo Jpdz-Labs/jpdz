@@ -1,0 +1,53 @@
+/* Mobile Navigation Enhancements */
+.db-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+}
+
+.db-nav-links {
+    display: flex;
+    align-items: center;
+}
+
+/* Enhanced mobile styling for nav button */
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    min-height: 44px; /* Improved touch target size */
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    white-space: nowrap;
+    border: 2px solid var(--color-primary, #ff5c00);
+    box-shadow: 0 2px 4px rgba(255, 92, 0, 0.2);
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    .db-nav {
+        padding: 1rem 0.5rem;
+    }
+
+    .nav-button {
+        margin-left: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    /* Ensure button remains visible */
+    .db-nav-links {
+        margin-left: auto;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 360px) {
+    .nav-button {
+        min-width: 100px;
+        padding: 0.5rem 0.75rem;
+    }
+}
