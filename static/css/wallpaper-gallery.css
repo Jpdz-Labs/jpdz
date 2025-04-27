@@ -175,6 +175,10 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .wallpaper-section {
+    padding: 2rem 1rem;
+  }
+
   .wallpaper-container {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
