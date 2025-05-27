@@ -6,6 +6,47 @@
 .wallpaper-section {
   padding: 4rem 2rem;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.85));
+  position: relative;
+}
+
+.wallpaper-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.wallpaper-header h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #ff5c00, #ff9500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wallpaper-header p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 92, 0, 0.1);
+  color: #ff5c00;
+  text-decoration: none;
+  border: 1px solid rgba(255, 92, 0, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.back-button:hover {
+  background: rgba(255, 92, 0, 0.2);
+  border-color: rgba(255, 92, 0, 0.5);
+  transform: translateY(-2px);
 }
 
 .wallpaper-container {
@@ -177,6 +218,19 @@
 @media (max-width: 768px) {
   .wallpaper-section {
     padding: 2rem 1rem;
+  }
+
+  .wallpaper-header h1 {
+    font-size: 2rem;
+  }
+
+  .wallpaper-header p {
+    font-size: 1rem;
+  }
+
+  .back-button {
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
   }
 
   .wallpaper-container {

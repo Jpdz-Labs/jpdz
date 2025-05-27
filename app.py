@@ -19,6 +19,10 @@ mail = Mail(app)
 def index():
     return render_template('index.html')
 
+@app.route('/wallpapers')
+def wallpapers():
+    return render_template('wallpapers.html')
+
 @app.route('/submit_contact', methods=['POST'])
 def submit_contact():
     # Get form data
