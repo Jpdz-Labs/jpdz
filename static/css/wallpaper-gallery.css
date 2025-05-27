@@ -19,6 +19,7 @@
   font-size: 3rem;
   font-weight: bold;
   margin-bottom: 1rem;
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
   background: linear-gradient(45deg, #ff5c00, #ff9500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -27,6 +28,7 @@
 
 .wallpaper-header p {
   font-size: 1.2rem;
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
   opacity: 0.8;
   margin-bottom: 2rem;
 }
@@ -41,6 +43,7 @@
   border-radius: 8px;
   transition: all 0.3s ease;
   font-weight: 500;
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
 }
 
 .back-button:hover {
@@ -136,6 +139,7 @@
 .wallpaper-title {
   font-size: 1.5rem;
   font-weight: bold;
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
   margin-bottom: 0.8rem;
   transform: translateY(20px);
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -147,6 +151,7 @@
 
 .wallpaper-description {
   font-size: 1rem;
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
   margin-bottom: 1.2rem;
   opacity: 0;
   transform: translateY(20px);
@@ -166,6 +171,7 @@
   text-decoration: none;
   border-radius: 12px;
   font-weight: 600;
+  font-family: var(--font-heading, 'Space Grotesk', sans-serif);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateY(20px);
@@ -222,15 +228,18 @@
 
   .wallpaper-header h1 {
     font-size: 2rem;
+    font-family: var(--font-heading, 'Space Grotesk', sans-serif);
   }
 
   .wallpaper-header p {
     font-size: 1rem;
+    font-family: var(--font-heading, 'Space Grotesk', sans-serif);
   }
 
   .back-button {
     padding: 0.8rem 1.2rem;
     font-size: 0.9rem;
+    font-family: var(--font-heading, 'Space Grotesk', sans-serif);
   }
 
   .wallpaper-container {
@@ -266,12 +275,14 @@
 
   .wallpaper-title {
     font-size: 1.2rem;
+    font-family: var(--font-heading, 'Space Grotesk', sans-serif);
     transform: translateY(0);
     margin-bottom: 0.5rem;
   }
 
   .wallpaper-description {
     font-size: 0.9rem;
+    font-family: var(--font-heading, 'Space Grotesk', sans-serif);
     opacity: 0.9;
     transform: translateY(0);
     margin-bottom: 1rem;
@@ -282,6 +293,7 @@
     transform: translateY(0);
     padding: 0.8rem 1.5rem;
     font-size: 1rem;
+    font-family: var(--font-heading, 'Space Grotesk', sans-serif);
     background-color: rgb(255, 92, 0);
     width: 100%;
     text-align: center;
